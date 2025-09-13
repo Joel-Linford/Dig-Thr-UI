@@ -184,7 +184,11 @@ export default function RadialTreeExplorer({ data = sampleData, fitViewport = tr
     const ro = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const cr = entry.contentRect;
-        setDims({ width: cr.width, height: cr.height });
+        setDims((prev) =>
+          prev.width !== cr.width || prev.height !== cr.height
+            ? { width: cr.width, height: cr.height }
+            : prev
+        );
       }
     });
     ro.observe(el);
