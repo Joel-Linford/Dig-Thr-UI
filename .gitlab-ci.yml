@@ -1,0 +1,22 @@
+image: node:20-alpine
+
+# Optional: make the base path dynamic from the repo name
+variables:
+  BASE_PATH: "/$CI_PROJECT_NAME/"
+
+cache:
+  paths:
+    - node_modules/
+
+pages:
+  stage: deploy
+  script:
+    - npm ci || npm install
+    - npm run build
+    - rm -rf public
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
