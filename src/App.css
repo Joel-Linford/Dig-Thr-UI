@@ -1,5 +1,13 @@
+
 .App {
   text-align: center;
+  height: 100vh;
+  overflow: hidden;
+}
+/* Main grid container scroll fix */
+.main-grid {
+  height: 100vh;
+  overflow: auto;
 }
 
 .App-logo {

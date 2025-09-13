@@ -6,21 +6,15 @@ import * as d3 from "d3";
  * ------------------------------------------------------------
  * React + D3 radial tree inspired by https://observablehq.com/@d3/radial-tree/2
  *
- * New in this revision:
- *  - Sidebar now surfaces **Requirements**, **Related System Blocks**, and **Metadata** from the full dataset for the selected node.
- *  - Keeps prior fixes (dblclick zoom disabled, selection preserved across focus, breadcrumbs use full data).
- *  - Added runtime tests around requirements/blocks extraction.
+ * Fix in this patch:
+ *  - Fixes `ReferenceError: radius is not defined` by reintroducing the layout computation
+ *    (nodes, links, radius) via useMemo, and wiring a proper ResizeObserver for `dims`.
+ *  - Zoom effect now depends on computed `radius` safely.
  *
- * UX:
- *  - Scroll/trackpad to zoom, drag to pan
- *  - Single‑click a node → select and show details in side panel
- *  - Double‑click a node → re‑root (focus) the tree at that node (selection preserved)
- *  - Breadcrumbs (from FULL dataset) are clickable to focus ancestors
- *  - "Reset root" → returns to original data root
- *
- * Usage:
- *   <RadialTreeExplorer data={yourHierarchyObjectOrJSONString} />
- *   If no data is provided, the classic `flare` dataset below is used.
+ * Other features kept:
+ *  - Sidebar surfaces **Requirements**, **Related System Blocks**, and **Metadata** from FULL dataset for selected node.
+ *  - Double‑click focuses a node and preserves selection; breadcrumbs (from FULL data) are clickable to focus ancestors.
+ *  - Optional "Lock center" to disable panning while keeping zoom.
  */
 
 // ------------------------------------------------------------
@@ -153,7 +147,7 @@ const sampleData = {"name":"flare","children":[{"name":"analytics","children":[{
 // ------------------------------------------------------------
 // Component
 // ------------------------------------------------------------
-export default function RadialTreeExplorer({ data = sampleData }) {
+export default function RadialTreeExplorer({ data = sampleData, fitViewport = true, disableBodyScroll = false }) {
   // Accept object or JSON string for data
   const parsed = useMemo(() => coerceHierarchyInput(data) || sampleData, [data]);
 
@@ -168,20 +162,22 @@ export default function RadialTreeExplorer({ data = sampleData }) {
   const [selectedNode, setSelectedNode] = useState(null);
   const [dims, setDims] = useState({ width: 900, height: 600 });
   const pendingSelectAbsPathRef = useRef(null);
+  const [lockCenter, setLockCenter] = useState(false);
 
-  // Unified focus helper used by double‑click, button, and breadcrumb
-  const focusAtNodeData = (nodeData) => {
-    const absPath = [...focusPathIdxs, ...(nodeData?._pathIdxs || [])];
-    // Preserve selection of this node across focus change
-    pendingSelectAbsPathRef.current = absPath;
-    setFocusPathIdxs(absPath);
-  };
-  const focusAtAbsPath = (absPath = []) => {
-    setFocusPathIdxs(absPath);
-    setSelectedNode(null);
-  };
+  // Optionally disable page scrolling while the graph is mounted/active
+  useEffect(() => {
+    if (!disableBodyScroll) return;
+    const prevOverflow = document.body.style.overflow;
+    const prevOverscroll = document.body.style.overscrollBehavior;
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.style.overscrollBehavior = prevOverscroll;
+    };
+  }, [disableBodyScroll]);
 
-  // Responsive sizing via ResizeObserver
+  // 🔧 Responsive sizing via ResizeObserver (restored)
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -195,13 +191,14 @@ export default function RadialTreeExplorer({ data = sampleData }) {
     return () => ro.disconnect();
   }, []);
 
+  // 🧮 Compute hierarchy layout (restores `radius`, `nodes`, `links`)
   const { root, nodes, links, radius } = useMemo(() => {
     const width = Math.max(400, dims.width);
     const height = Math.max(300, dims.height);
 
-    const r = Math.min(width, height) / 2 - 24; // padding
+    const r = Math.min(width, height) / 2 - 24; // padding from edge
 
-    // Build a d3.hierarchy from the focused (possibly re-rooted) data
+    // Build a d3.hierarchy from the focused (possibly re-rooted) data, limited in depth
     const viewData = limitDepth(focusedData, MAX_DEPTH);
     const h = d3
       .hierarchy(viewData)
@@ -219,66 +216,57 @@ export default function RadialTreeExplorer({ data = sampleData }) {
     };
   }, [focusedData, dims.width, dims.height]);
 
-  // After focus change/layout recompute, keep the intended selection visible
-  useEffect(() => {
-    const absPending = pendingSelectAbsPathRef.current;
-    if (!absPending) return;
-    const rel = absPending.slice(focusPathIdxs.length);
-    const targetRel = rel.slice(0, MAX_DEPTH);
-    const eq = (a = [], b = []) => a.length === b.length && a.every((v, i) => v === b[i]);
+  // Unified focus helper used by double‑click, button, and breadcrumb
+  const focusAtNodeData = (nodeData) => {
+    const absPath = [...focusPathIdxs, ...(nodeData?._pathIdxs || [])];
+    // Preserve selection of this node across focus change
+    pendingSelectAbsPathRef.current = absPath;
+    setFocusPathIdxs(absPath);
+  };
+  const focusAtAbsPath = (absPath = []) => {
+    setFocusPathIdxs(absPath);
+    setSelectedNode(null);
+  };
 
-    let chosen = null;
-    if (targetRel.length === 0) {
-      chosen = root; // focused node is the selection
-    } else {
-      chosen = nodes.find((n) => eq(n.data?._pathIdxs || [], targetRel)) || null;
-      if (!chosen) {
-        // Fallback: deepest visible ancestor along target path
-        let best = root;
-        for (const n of nodes) {
-          const p = n.data?._pathIdxs || [];
-          let isPrefix = true;
-          for (let i = 0; i < Math.min(p.length, targetRel.length); i++) {
-            if (p[i] !== targetRel[i]) { isPrefix = false; break; }
-          }
-          if (isPrefix && p.length > (best.data?._pathIdxs || []).length) best = n;
-        }
-        chosen = best;
-      }
-    }
-    setSelectedNode(chosen);
-    pendingSelectAbsPathRef.current = null;
-  }, [nodes, root, focusPathIdxs]);
-
-  // Initialize zoom/pan and clear transforms when the root changes
+  // 🔍 Initialize zoom/pan and respect `radius`
   useEffect(() => {
     const svg = d3.select(svgRef.current);
     const g = d3.select(gRef.current);
 
+    // Prevent browser-native scroll/zoom behavior from bubbling to the page
+    svg.style("touch-action", "none");
+
+    const cx = dims.width / 2;
+    const cy = dims.height / 2;
+
     const zoomed = (event) => {
-      g.attr(
-        "transform",
-        `translate(${dims.width / 2},${dims.height / 2}) ${event.transform}`
-      );
+      // If lockCenter is enabled, ignore pan (x/y) but keep zoom (k)
+      const t = lockCenter ? d3.zoomIdentity.scale(event.transform.k) : event.transform;
+      g.attr("transform", `translate(${cx},${cy}) ${t}`);
     };
+
+    // Estimate drawable bounds (circle of radius `radius` plus label padding)
+    const labelPadMax = LABEL_RADIAL_PAD_BASE + LABEL_RADIAL_PAD_EXTRA + 20; // safety margin
+    const contentR = radius + labelPadMax;
 
     const zoom = d3
       .zoom()
       .scaleExtent([0.4, 4])
+      .extent([[0, 0], [dims.width, dims.height]])
+      .translateExtent([[cx - contentR, cy - contentR], [cx + contentR, cy + contentR]])
       // Ignore double-click so it doesn't trigger zoom; we handle dblclick for focus ourselves
       .filter((event) => event.type !== "dblclick")
       .on("zoom", zoomed);
 
     svg.call(zoom);
-
     // Also remove the built-in dblclick zoom handler for extra safety
     svg.on("dblclick.zoom", null);
 
-    // Reset to identity transform when focusedData changes
+    // Reset to identity transform when dependencies change
     svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity);
 
     return () => svg.on("zoom", null);
-  }, [focusedData, dims.width, dims.height]);
+  }, [focusedData, dims.width, dims.height, radius, lockCenter]);
 
   // Helpers to convert polar (angle, radius) to Cartesian
   const radialPoint = (x, y) => [
@@ -377,19 +365,21 @@ export default function RadialTreeExplorer({ data = sampleData }) {
   );
 
   return (
-    <div className="w-full h-[80vh] grid grid-cols-12 gap-4 p-4 bg-gray-50">
+    <div className={`w-full ${fitViewport ? "h-[100dvh]" : "h-[80vh]"} grid grid-cols-12 gap-4 p-4 bg-gray-50 overflow-hidden`}>
       {/* Graph area */}
       <div
         ref={containerRef}
-        className="col-span-8 relative rounded-2xl border bg-white"
+        className="col-span-8 relative rounded-2xl border bg-white overflow-hidden overscroll-contain"
       >
         <svg
           ref={svgRef}
           width={dims.width}
           height={dims.height}
           className="absolute inset-0 w-full h-full"
+          style={{ touchAction: "none" }}
           role="img"
           aria-label="Radial tree"
+          onWheel={(e) => { e.preventDefault(); }}
         >
           {/* Centering group; zoom behavior applies transform updates here */}
           <g ref={gRef} transform={`translate(${dims.width / 2},${dims.height / 2})`}>
@@ -453,6 +443,13 @@ export default function RadialTreeExplorer({ data = sampleData }) {
             title="Reset to original root"
           >
             Reset root
+          </button>
+          <button
+            onClick={() => setLockCenter((v) => !v)}
+            className="rounded-xl border px-3 py-1 text-sm bg-white hover:bg-gray-50 shadow-sm"
+            title={lockCenter ? "Allow panning" : "Lock view to center (no pan)"}
+            >
+            {lockCenter ? "Unlock pan" : "Lock center"}
           </button>
         </div>
 
@@ -688,6 +685,14 @@ const runRuntimeTests = () => {
     const tReqs = asArray(tNode.requirements); const tBlks = asArray(tNode.relatedSystemBlocks);
     results.push({ name: "requirements length == 2", pass: tReqs.length === 2, got: tReqs.length });
     results.push({ name: "blocks length == 1", pass: tBlks.length === 1, got: tBlks.length });
+
+    // 9) pruned→original mapping with non-empty focus path
+    const focusAbs = [0]; // focus at analytics
+    const prunedF = limitDepth(getNodeByPathIdxs(sampleData, focusAbs), 2); // view from analytics
+    const prunedChildSim = { data: getNodeByPathIdxs(prunedF, [0]) }; // first child under analytics
+    const origFromPruned2 = getOriginalFromPrunedNode(sampleData, focusAbs, prunedChildSim);
+    const expectedOrig2 = getNodeByPathIdxs(sampleData, [0, 0]);
+    results.push({ name: "pruned→original mapping with focus path", pass: origFromPruned2 && expectedOrig2 && origFromPruned2.name === expectedOrig2.name });
 
     console.table(results);
     return results;

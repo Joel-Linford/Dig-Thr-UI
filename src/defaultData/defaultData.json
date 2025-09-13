@@ -1,0 +1,1336 @@
+{
+  "id": "NODE-a1c041fc",
+  "name": "flare",
+  "requirements": [
+    {
+      "reqId": "REQ-cbfdb7b7",
+      "title": "Requirement 0.1",
+      "text": "The system shall provide capability level 0 feature 1.",
+      "priority": "Low",
+      "status": "Draft",
+      "verification": {
+        "method": "Inspection",
+        "status": "Planned"
+      },
+      "source": "CONOPS",
+      "acceptanceCriteria": "Acceptance criteria for 0.1"
+    },
+    {
+      "reqId": "REQ-79579db5",
+      "title": "Requirement 0.2",
+      "text": "The system shall provide capability level 0 feature 2.",
+      "priority": "Low",
+      "status": "Approved",
+      "verification": {
+        "method": "Test",
+        "status": "Complete"
+      },
+      "source": "MIL-STD-961E",
+      "acceptanceCriteria": "Acceptance criteria for 0.2"
+    }
+  ],
+  "relatedSystemBlocks": [
+    {
+      "blockId": "BLK-20e03b30",
+      "name": "Processor 0-1",
+      "type": "SoftwareService",
+      "layer": "Mission",
+      "interfaceRefs": [
+        "IFC-0ecfac67"
+      ]
+    },
+    {
+      "blockId": "BLK-504cbfff",
+      "name": "Bus 0-2",
+      "type": "Subsystem",
+      "layer": "Presentation",
+      "interfaceRefs": [
+        "IFC-8a0dcb57",
+        "IFC-a2813a21"
+      ]
+    }
+  ],
+  "metadata": {
+    "owner": "IV&V",
+    "version": "v2.0",
+    "lastUpdated": "2025-09-13"
+  },
+  "children": [
+    {
+      "id": "NODE-403f377c",
+      "name": "analytics",
+      "requirements": [
+        {
+          "reqId": "REQ-657d025c",
+          "title": "Requirement 1.1",
+          "text": "The system shall provide capability level 1 feature 1.",
+          "priority": "High",
+          "status": "Verified",
+          "verification": {
+            "method": "Inspection",
+            "status": "Planned"
+          },
+          "source": "CONOPS",
+          "acceptanceCriteria": "Acceptance criteria for 1.1"
+        },
+        {
+          "reqId": "REQ-1e3512ee",
+          "title": "Requirement 1.2",
+          "text": "The system shall provide capability level 1 feature 2.",
+          "priority": "Low",
+          "status": "Draft",
+          "verification": {
+            "method": "Analysis",
+            "status": "In Progress"
+          },
+          "source": "Interface Control Document",
+          "acceptanceCriteria": "Acceptance criteria for 1.2"
+        }
+      ],
+      "relatedSystemBlocks": [
+        {
+          "blockId": "BLK-92d7ee62",
+          "name": "Bus 1-1",
+          "type": "Component",
+          "layer": "Presentation",
+          "interfaceRefs": [
+            "IFC-0061cc89",
+            "IFC-51eb08d2"
+          ]
+        },
+        {
+          "blockId": "BLK-02a034fd",
+          "name": "Sensor 1-2",
+          "type": "Subsystem",
+          "layer": "Data",
+          "interfaceRefs": []
+        }
+      ],
+      "metadata": {
+        "owner": "HW",
+        "version": "v3.2",
+        "lastUpdated": "2025-09-13"
+      },
+      "children": [
+        {
+          "id": "NODE-516554fb",
+          "name": "cluster",
+          "requirements": [
+            {
+              "reqId": "REQ-9be8b87d",
+              "title": "Requirement 1.1.1",
+              "text": "The system shall provide capability level 1.1 feature 1.",
+              "priority": "High",
+              "status": "Draft",
+              "verification": {
+                "method": "Test",
+                "status": "In Progress"
+              },
+              "source": "MIL-STD-961E",
+              "acceptanceCriteria": "Acceptance criteria for 1.1.1"
+            },
+            {
+              "reqId": "REQ-0ead7968",
+              "title": "Requirement 1.1.2",
+              "text": "The system shall provide capability level 1.1 feature 2.",
+              "priority": "Medium",
+              "status": "Draft",
+              "verification": {
+                "method": "Demonstration",
+                "status": "Complete"
+              },
+              "source": "CONOPS",
+              "acceptanceCriteria": "Acceptance criteria for 1.1.2"
+            }
+          ],
+          "relatedSystemBlocks": [
+            {
+              "blockId": "BLK-438ebb56",
+              "name": "Bus 1.1-1",
+              "type": "Subsystem",
+              "layer": "Data",
+              "interfaceRefs": []
+            },
+            {
+              "blockId": "BLK-3d42829b",
+              "name": "Sensor 1.1-2",
+              "type": "Component",
+              "layer": "Mission",
+              "interfaceRefs": [
+                "IFC-31d81761",
+                "IFC-ceaf06d9"
+              ]
+            }
+          ],
+          "metadata": {
+            "owner": "HW",
+            "version": "v2.8",
+            "lastUpdated": "2025-09-13"
+          },
+          "children": [
+            {
+              "id": "NODE-a7103fc6",
+              "name": "AgglomerativeCluster",
+              "requirements": [
+                {
+                  "reqId": "REQ-21052d7d",
+                  "title": "Requirement 1.1.1.1",
+                  "text": "The system shall provide capability level 1.1.1 feature 1.",
+                  "priority": "Low",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Demonstration",
+                    "status": "In Progress"
+                  },
+                  "source": "SOW 3.9.1",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.1.1"
+                },
+                {
+                  "reqId": "REQ-d7a848e2",
+                  "title": "Requirement 1.1.1.2",
+                  "text": "The system shall provide capability level 1.1.1 feature 2.",
+                  "priority": "Low",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Test",
+                    "status": "Complete"
+                  },
+                  "source": "Interface Control Document",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.1.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-000b8e68",
+                  "name": "Bus 1.1.1-1",
+                  "type": "SoftwareService",
+                  "layer": "Presentation",
+                  "interfaceRefs": [
+                    "IFC-d50388d8",
+                    "IFC-98cef398"
+                  ]
+                },
+                {
+                  "blockId": "BLK-e6feaecd",
+                  "name": "Sensor 1.1.1-2",
+                  "type": "Subsystem",
+                  "layer": "Platform",
+                  "interfaceRefs": [
+                    "IFC-5d6bbcd0"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "Systems",
+                "version": "v3.8",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 3938
+            },
+            {
+              "id": "NODE-bb0dd7df",
+              "name": "CommunityStructure",
+              "requirements": [
+                {
+                  "reqId": "REQ-99749ec5",
+                  "title": "Requirement 1.1.2.1",
+                  "text": "The system shall provide capability level 1.1.2 feature 1.",
+                  "priority": "High",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "Planned"
+                  },
+                  "source": "SOW 3.9.1",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.2.1"
+                },
+                {
+                  "reqId": "REQ-90612ca2",
+                  "title": "Requirement 1.1.2.2",
+                  "text": "The system shall provide capability level 1.1.2 feature 2.",
+                  "priority": "High",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "Complete"
+                  },
+                  "source": "MIL-STD-961E",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.2.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-ff4a5244",
+                  "name": "Sensor 1.1.2-1",
+                  "type": "SoftwareService",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-5d1f4aac"
+                  ]
+                },
+                {
+                  "blockId": "BLK-dc504fb0",
+                  "name": "Actuator 1.1.2-2",
+                  "type": "SoftwareService",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-6e43b977",
+                    "IFC-d96f6823"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "Systems",
+                "version": "v1.1",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 3812
+            },
+            {
+              "id": "NODE-5a71d021",
+              "name": "HierarchicalCluster",
+              "requirements": [
+                {
+                  "reqId": "REQ-2fa5ef25",
+                  "title": "Requirement 1.1.3.1",
+                  "text": "The system shall provide capability level 1.1.3 feature 1.",
+                  "priority": "High",
+                  "status": "Approved",
+                  "verification": {
+                    "method": "Demonstration",
+                    "status": "In Progress"
+                  },
+                  "source": "Interface Control Document",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.3.1"
+                },
+                {
+                  "reqId": "REQ-cff3d9ed",
+                  "title": "Requirement 1.1.3.2",
+                  "text": "The system shall provide capability level 1.1.3 feature 2.",
+                  "priority": "Low",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Inspection",
+                    "status": "Planned"
+                  },
+                  "source": "MIL-STD-961E",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.3.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-adff40c9",
+                  "name": "Service 1.1.3-1",
+                  "type": "Subsystem",
+                  "layer": "Platform",
+                  "interfaceRefs": []
+                },
+                {
+                  "blockId": "BLK-78484928",
+                  "name": "Service 1.1.3-2",
+                  "type": "Subsystem",
+                  "layer": "Platform",
+                  "interfaceRefs": [
+                    "IFC-81c490f1"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "HW",
+                "version": "v1.1",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 6714
+            },
+            {
+              "id": "NODE-2fc607ae",
+              "name": "MergeEdge",
+              "requirements": [
+                {
+                  "reqId": "REQ-efc17cc4",
+                  "title": "Requirement 1.1.4.1",
+                  "text": "The system shall provide capability level 1.1.4 feature 1.",
+                  "priority": "Low",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Test",
+                    "status": "In Progress"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.4.1"
+                },
+                {
+                  "reqId": "REQ-4df5f89d",
+                  "title": "Requirement 1.1.4.2",
+                  "text": "The system shall provide capability level 1.1.4 feature 2.",
+                  "priority": "Medium",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "In Progress"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 1.1.4.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-e620aa19",
+                  "name": "Bus 1.1.4-1",
+                  "type": "SoftwareService",
+                  "layer": "Mission",
+                  "interfaceRefs": []
+                },
+                {
+                  "blockId": "BLK-dcdd0135",
+                  "name": "Processor 1.1.4-2",
+                  "type": "SoftwareService",
+                  "layer": "Platform",
+                  "interfaceRefs": [
+                    "IFC-b70e771e",
+                    "IFC-1c0d3481"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "Systems",
+                "version": "v1.6",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 743
+            }
+          ]
+        },
+        {
+          "id": "NODE-39da449d",
+          "name": "graph",
+          "requirements": [
+            {
+              "reqId": "REQ-3b129a53",
+              "title": "Requirement 1.2.1",
+              "text": "The system shall provide capability level 1.2 feature 1.",
+              "priority": "Medium",
+              "status": "Draft",
+              "verification": {
+                "method": "Analysis",
+                "status": "Complete"
+              },
+              "source": "CONOPS",
+              "acceptanceCriteria": "Acceptance criteria for 1.2.1"
+            },
+            {
+              "reqId": "REQ-b5dd7ffd",
+              "title": "Requirement 1.2.2",
+              "text": "The system shall provide capability level 1.2 feature 2.",
+              "priority": "High",
+              "status": "Verified",
+              "verification": {
+                "method": "Inspection",
+                "status": "In Progress"
+              },
+              "source": "MIL-STD-961E",
+              "acceptanceCriteria": "Acceptance criteria for 1.2.2"
+            }
+          ],
+          "relatedSystemBlocks": [
+            {
+              "blockId": "BLK-75af9f35",
+              "name": "Sensor 1.2-1",
+              "type": "Component",
+              "layer": "Mission",
+              "interfaceRefs": [
+                "IFC-ca72b6d8"
+              ]
+            },
+            {
+              "blockId": "BLK-cf6659e7",
+              "name": "Bus 1.2-2",
+              "type": "SoftwareService",
+              "layer": "Platform",
+              "interfaceRefs": []
+            }
+          ],
+          "metadata": {
+            "owner": "HW",
+            "version": "v1.4",
+            "lastUpdated": "2025-09-13"
+          },
+          "children": [
+            {
+              "id": "NODE-cb0ba8d0",
+              "name": "BetweennessCentrality",
+              "requirements": [
+                {
+                  "reqId": "REQ-3aeaa4ec",
+                  "title": "Requirement 1.2.1.1",
+                  "text": "The system shall provide capability level 1.2.1 feature 1.",
+                  "priority": "Low",
+                  "status": "Approved",
+                  "verification": {
+                    "method": "Demonstration",
+                    "status": "Complete"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 1.2.1.1"
+                },
+                {
+                  "reqId": "REQ-370159da",
+                  "title": "Requirement 1.2.1.2",
+                  "text": "The system shall provide capability level 1.2.1 feature 2.",
+                  "priority": "Low",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "In Progress"
+                  },
+                  "source": "MIL-STD-961E",
+                  "acceptanceCriteria": "Acceptance criteria for 1.2.1.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-beccce5e",
+                  "name": "Service 1.2.1-1",
+                  "type": "SoftwareService",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-dcc100e5",
+                    "IFC-fc3065f7"
+                  ]
+                },
+                {
+                  "blockId": "BLK-2f00d525",
+                  "name": "Service 1.2.1-2",
+                  "type": "SoftwareService",
+                  "layer": "Mission",
+                  "interfaceRefs": [
+                    "IFC-5a557d0e"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "HW",
+                "version": "v2.5",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 3534
+            },
+            {
+              "id": "NODE-2d8456b3",
+              "name": "LinkDistance",
+              "requirements": [
+                {
+                  "reqId": "REQ-f39cd2c7",
+                  "title": "Requirement 1.2.2.1",
+                  "text": "The system shall provide capability level 1.2.2 feature 1.",
+                  "priority": "Low",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "In Progress"
+                  },
+                  "source": "Interface Control Document",
+                  "acceptanceCriteria": "Acceptance criteria for 1.2.2.1"
+                },
+                {
+                  "reqId": "REQ-206e09fe",
+                  "title": "Requirement 1.2.2.2",
+                  "text": "The system shall provide capability level 1.2.2 feature 2.",
+                  "priority": "High",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Test",
+                    "status": "Complete"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 1.2.2.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-39002af9",
+                  "name": "Actuator 1.2.2-1",
+                  "type": "Subsystem",
+                  "layer": "Presentation",
+                  "interfaceRefs": []
+                },
+                {
+                  "blockId": "BLK-43572b6c",
+                  "name": "Processor 1.2.2-2",
+                  "type": "Subsystem",
+                  "layer": "Mission",
+                  "interfaceRefs": []
+                }
+              ],
+              "metadata": {
+                "owner": "Systems",
+                "version": "v3.1",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 5731
+            },
+            {
+              "id": "NODE-6d84e577",
+              "name": "MaxFlowMinCut",
+              "requirements": [
+                {
+                  "reqId": "REQ-f2b7b8a6",
+                  "title": "Requirement 1.2.3.1",
+                  "text": "The system shall provide capability level 1.2.3 feature 1.",
+                  "priority": "Low",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Test",
+                    "status": "Complete"
+                  },
+                  "source": "SOW 3.9.1",
+                  "acceptanceCriteria": "Acceptance criteria for 1.2.3.1"
+                },
+                {
+                  "reqId": "REQ-2978ee87",
+                  "title": "Requirement 1.2.3.2",
+                  "text": "The system shall provide capability level 1.2.3 feature 2.",
+                  "priority": "High",
+                  "status": "Approved",
+                  "verification": {
+                    "method": "Inspection",
+                    "status": "In Progress"
+                  },
+                  "source": "MIL-STD-961E",
+                  "acceptanceCriteria": "Acceptance criteria for 1.2.3.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-53221b59",
+                  "name": "Bus 1.2.3-1",
+                  "type": "Subsystem",
+                  "layer": "Mission",
+                  "interfaceRefs": [
+                    "IFC-44c3d640"
+                  ]
+                },
+                {
+                  "blockId": "BLK-6dafcf19",
+                  "name": "Service 1.2.3-2",
+                  "type": "Interface",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-56bab701"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "Systems",
+                "version": "v2.7",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 7840
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NODE-8e7aa8ca",
+      "name": "animate",
+      "requirements": [
+        {
+          "reqId": "REQ-d0d0cf43",
+          "title": "Requirement 2.1",
+          "text": "The system shall provide capability level 2 feature 1.",
+          "priority": "Medium",
+          "status": "Approved",
+          "verification": {
+            "method": "Inspection",
+            "status": "Complete"
+          },
+          "source": "MIL-STD-961E",
+          "acceptanceCriteria": "Acceptance criteria for 2.1"
+        },
+        {
+          "reqId": "REQ-32f6681b",
+          "title": "Requirement 2.2",
+          "text": "The system shall provide capability level 2 feature 2.",
+          "priority": "Low",
+          "status": "Approved",
+          "verification": {
+            "method": "Test",
+            "status": "In Progress"
+          },
+          "source": "CONOPS",
+          "acceptanceCriteria": "Acceptance criteria for 2.2"
+        }
+      ],
+      "relatedSystemBlocks": [
+        {
+          "blockId": "BLK-792dcde6",
+          "name": "Bus 2-1",
+          "type": "Subsystem",
+          "layer": "Platform",
+          "interfaceRefs": []
+        },
+        {
+          "blockId": "BLK-e64ac5e1",
+          "name": "Service 2-2",
+          "type": "SoftwareService",
+          "layer": "Mission",
+          "interfaceRefs": [
+            "IFC-8126f909"
+          ]
+        }
+      ],
+      "metadata": {
+        "owner": "Systems",
+        "version": "v3.5",
+        "lastUpdated": "2025-09-13"
+      },
+      "children": [
+        {
+          "id": "NODE-9cebe947",
+          "name": "Easing",
+          "requirements": [
+            {
+              "reqId": "REQ-eed5103a",
+              "title": "Requirement 2.1.1",
+              "text": "The system shall provide capability level 2.1 feature 1.",
+              "priority": "Medium",
+              "status": "Verified",
+              "verification": {
+                "method": "Demonstration",
+                "status": "Complete"
+              },
+              "source": "CONOPS",
+              "acceptanceCriteria": "Acceptance criteria for 2.1.1"
+            },
+            {
+              "reqId": "REQ-9439d5a0",
+              "title": "Requirement 2.1.2",
+              "text": "The system shall provide capability level 2.1 feature 2.",
+              "priority": "Low",
+              "status": "Verified",
+              "verification": {
+                "method": "Inspection",
+                "status": "Complete"
+              },
+              "source": "SOW 3.9.1",
+              "acceptanceCriteria": "Acceptance criteria for 2.1.2"
+            }
+          ],
+          "relatedSystemBlocks": [
+            {
+              "blockId": "BLK-0ad69beb",
+              "name": "Sensor 2.1-1",
+              "type": "Interface",
+              "layer": "Data",
+              "interfaceRefs": [
+                "IFC-134e1aea"
+              ]
+            },
+            {
+              "blockId": "BLK-60d161f8",
+              "name": "Processor 2.1-2",
+              "type": "Interface",
+              "layer": "Mission",
+              "interfaceRefs": [
+                "IFC-772baa34"
+              ]
+            }
+          ],
+          "metadata": {
+            "owner": "Systems",
+            "version": "v1.2",
+            "lastUpdated": "2025-09-13"
+          },
+          "value": 17010
+        },
+        {
+          "id": "NODE-d2a36025",
+          "name": "interpolate",
+          "requirements": [
+            {
+              "reqId": "REQ-861113f3",
+              "title": "Requirement 2.2.1",
+              "text": "The system shall provide capability level 2.2 feature 1.",
+              "priority": "Low",
+              "status": "Verified",
+              "verification": {
+                "method": "Analysis",
+                "status": "Complete"
+              },
+              "source": "CONOPS",
+              "acceptanceCriteria": "Acceptance criteria for 2.2.1"
+            },
+            {
+              "reqId": "REQ-1b49d133",
+              "title": "Requirement 2.2.2",
+              "text": "The system shall provide capability level 2.2 feature 2.",
+              "priority": "High",
+              "status": "Verified",
+              "verification": {
+                "method": "Inspection",
+                "status": "Complete"
+              },
+              "source": "Interface Control Document",
+              "acceptanceCriteria": "Acceptance criteria for 2.2.2"
+            }
+          ],
+          "relatedSystemBlocks": [
+            {
+              "blockId": "BLK-3666bb68",
+              "name": "Bus 2.2-1",
+              "type": "SoftwareService",
+              "layer": "Mission",
+              "interfaceRefs": [
+                "IFC-c1c207f0"
+              ]
+            },
+            {
+              "blockId": "BLK-7410cb1b",
+              "name": "Processor 2.2-2",
+              "type": "Interface",
+              "layer": "Data",
+              "interfaceRefs": [
+                "IFC-2507feae",
+                "IFC-bf660bf1"
+              ]
+            }
+          ],
+          "metadata": {
+            "owner": "HW",
+            "version": "v3.5",
+            "lastUpdated": "2025-09-13"
+          },
+          "children": [
+            {
+              "id": "NODE-03f7f9ee",
+              "name": "ArrayInterpolator",
+              "requirements": [
+                {
+                  "reqId": "REQ-c2c9e254",
+                  "title": "Requirement 2.2.1.1",
+                  "text": "The system shall provide capability level 2.2.1 feature 1.",
+                  "priority": "Medium",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "Planned"
+                  },
+                  "source": "MIL-STD-961E",
+                  "acceptanceCriteria": "Acceptance criteria for 2.2.1.1"
+                },
+                {
+                  "reqId": "REQ-1f307bc3",
+                  "title": "Requirement 2.2.1.2",
+                  "text": "The system shall provide capability level 2.2.1 feature 2.",
+                  "priority": "Low",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Demonstration",
+                    "status": "In Progress"
+                  },
+                  "source": "SOW 3.9.1",
+                  "acceptanceCriteria": "Acceptance criteria for 2.2.1.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-cc7ae87e",
+                  "name": "Actuator 2.2.1-1",
+                  "type": "SoftwareService",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-5fdb68f3",
+                    "IFC-c8e47b34"
+                  ]
+                },
+                {
+                  "blockId": "BLK-713111fc",
+                  "name": "Actuator 2.2.1-2",
+                  "type": "SoftwareService",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-7f573396"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "HW",
+                "version": "v1.6",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 1983
+            },
+            {
+              "id": "NODE-790028fd",
+              "name": "ColorInterpolator",
+              "requirements": [
+                {
+                  "reqId": "REQ-1b193d99",
+                  "title": "Requirement 2.2.2.1",
+                  "text": "The system shall provide capability level 2.2.2 feature 1.",
+                  "priority": "Low",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "In Progress"
+                  },
+                  "source": "MIL-STD-961E",
+                  "acceptanceCriteria": "Acceptance criteria for 2.2.2.1"
+                },
+                {
+                  "reqId": "REQ-abc7e56e",
+                  "title": "Requirement 2.2.2.2",
+                  "text": "The system shall provide capability level 2.2.2 feature 2.",
+                  "priority": "Medium",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Test",
+                    "status": "Complete"
+                  },
+                  "source": "Interface Control Document",
+                  "acceptanceCriteria": "Acceptance criteria for 2.2.2.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-eb088834",
+                  "name": "Processor 2.2.2-1",
+                  "type": "SoftwareService",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-328b42f5"
+                  ]
+                },
+                {
+                  "blockId": "BLK-788d3c45",
+                  "name": "Processor 2.2.2-2",
+                  "type": "Subsystem",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-bec578c8"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "SW",
+                "version": "v1.1",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 2047
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NODE-edbd6274",
+      "name": "vis",
+      "requirements": [
+        {
+          "reqId": "REQ-f7deba86",
+          "title": "Requirement 3.1",
+          "text": "The system shall provide capability level 3 feature 1.",
+          "priority": "Medium",
+          "status": "Approved",
+          "verification": {
+            "method": "Demonstration",
+            "status": "Complete"
+          },
+          "source": "Interface Control Document",
+          "acceptanceCriteria": "Acceptance criteria for 3.1"
+        },
+        {
+          "reqId": "REQ-a82b54a4",
+          "title": "Requirement 3.2",
+          "text": "The system shall provide capability level 3 feature 2.",
+          "priority": "Medium",
+          "status": "Draft",
+          "verification": {
+            "method": "Test",
+            "status": "In Progress"
+          },
+          "source": "Interface Control Document",
+          "acceptanceCriteria": "Acceptance criteria for 3.2"
+        }
+      ],
+      "relatedSystemBlocks": [
+        {
+          "blockId": "BLK-e798e4e0",
+          "name": "Actuator 3-1",
+          "type": "Subsystem",
+          "layer": "Platform",
+          "interfaceRefs": []
+        },
+        {
+          "blockId": "BLK-4131d8b0",
+          "name": "Service 3-2",
+          "type": "Component",
+          "layer": "Presentation",
+          "interfaceRefs": [
+            "IFC-a6777c72",
+            "IFC-27287631"
+          ]
+        }
+      ],
+      "metadata": {
+        "owner": "SW",
+        "version": "v2.8",
+        "lastUpdated": "2025-09-13"
+      },
+      "children": [
+        {
+          "id": "NODE-4a360fdd",
+          "name": "axis",
+          "requirements": [
+            {
+              "reqId": "REQ-6022139c",
+              "title": "Requirement 3.1.1",
+              "text": "The system shall provide capability level 3.1 feature 1.",
+              "priority": "High",
+              "status": "Approved",
+              "verification": {
+                "method": "Analysis",
+                "status": "Complete"
+              },
+              "source": "Interface Control Document",
+              "acceptanceCriteria": "Acceptance criteria for 3.1.1"
+            },
+            {
+              "reqId": "REQ-bc7daba7",
+              "title": "Requirement 3.1.2",
+              "text": "The system shall provide capability level 3.1 feature 2.",
+              "priority": "Low",
+              "status": "Draft",
+              "verification": {
+                "method": "Test",
+                "status": "In Progress"
+              },
+              "source": "CONOPS",
+              "acceptanceCriteria": "Acceptance criteria for 3.1.2"
+            }
+          ],
+          "relatedSystemBlocks": [
+            {
+              "blockId": "BLK-ebffec5e",
+              "name": "Service 3.1-1",
+              "type": "Subsystem",
+              "layer": "Mission",
+              "interfaceRefs": [
+                "IFC-ec4eab59"
+              ]
+            },
+            {
+              "blockId": "BLK-616e6034",
+              "name": "Sensor 3.1-2",
+              "type": "SoftwareService",
+              "layer": "Data",
+              "interfaceRefs": [
+                "IFC-d1f6f21a",
+                "IFC-64a64017"
+              ]
+            }
+          ],
+          "metadata": {
+            "owner": "Systems",
+            "version": "v2.2",
+            "lastUpdated": "2025-09-13"
+          },
+          "children": [
+            {
+              "id": "NODE-33210e33",
+              "name": "Axes",
+              "requirements": [
+                {
+                  "reqId": "REQ-5667e921",
+                  "title": "Requirement 3.1.1.1",
+                  "text": "The system shall provide capability level 3.1.1 feature 1.",
+                  "priority": "High",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Demonstration",
+                    "status": "Planned"
+                  },
+                  "source": "SOW 3.9.1",
+                  "acceptanceCriteria": "Acceptance criteria for 3.1.1.1"
+                },
+                {
+                  "reqId": "REQ-3f56018f",
+                  "title": "Requirement 3.1.1.2",
+                  "text": "The system shall provide capability level 3.1.1 feature 2.",
+                  "priority": "Low",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Inspection",
+                    "status": "Complete"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 3.1.1.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-35bb6fcc",
+                  "name": "Processor 3.1.1-1",
+                  "type": "SoftwareService",
+                  "layer": "Platform",
+                  "interfaceRefs": []
+                },
+                {
+                  "blockId": "BLK-d990cad3",
+                  "name": "Sensor 3.1.1-2",
+                  "type": "SoftwareService",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-933e6a6e"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "SW",
+                "version": "v3.9",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 1302
+            },
+            {
+              "id": "NODE-53c9fb4a",
+              "name": "Axis",
+              "requirements": [
+                {
+                  "reqId": "REQ-1b98db56",
+                  "title": "Requirement 3.1.2.1",
+                  "text": "The system shall provide capability level 3.1.2 feature 1.",
+                  "priority": "Low",
+                  "status": "Draft",
+                  "verification": {
+                    "method": "Analysis",
+                    "status": "Planned"
+                  },
+                  "source": "Interface Control Document",
+                  "acceptanceCriteria": "Acceptance criteria for 3.1.2.1"
+                },
+                {
+                  "reqId": "REQ-7c983468",
+                  "title": "Requirement 3.1.2.2",
+                  "text": "The system shall provide capability level 3.1.2 feature 2.",
+                  "priority": "Low",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Test",
+                    "status": "Planned"
+                  },
+                  "source": "SOW 3.9.1",
+                  "acceptanceCriteria": "Acceptance criteria for 3.1.2.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-b207ee4e",
+                  "name": "Actuator 3.1.2-1",
+                  "type": "SoftwareService",
+                  "layer": "Mission",
+                  "interfaceRefs": []
+                },
+                {
+                  "blockId": "BLK-16b149ff",
+                  "name": "Service 3.1.2-2",
+                  "type": "Interface",
+                  "layer": "Platform",
+                  "interfaceRefs": [
+                    "IFC-6782a706",
+                    "IFC-ddbf8f5d"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "SW",
+                "version": "v1.3",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 24593
+            }
+          ]
+        },
+        {
+          "id": "NODE-949ccec0",
+          "name": "layout",
+          "requirements": [
+            {
+              "reqId": "REQ-59c26999",
+              "title": "Requirement 3.2.1",
+              "text": "The system shall provide capability level 3.2 feature 1.",
+              "priority": "Medium",
+              "status": "Draft",
+              "verification": {
+                "method": "Test",
+                "status": "Planned"
+              },
+              "source": "MIL-STD-961E",
+              "acceptanceCriteria": "Acceptance criteria for 3.2.1"
+            },
+            {
+              "reqId": "REQ-d816d8bd",
+              "title": "Requirement 3.2.2",
+              "text": "The system shall provide capability level 3.2 feature 2.",
+              "priority": "Low",
+              "status": "Verified",
+              "verification": {
+                "method": "Analysis",
+                "status": "Planned"
+              },
+              "source": "SOW 3.9.1",
+              "acceptanceCriteria": "Acceptance criteria for 3.2.2"
+            }
+          ],
+          "relatedSystemBlocks": [
+            {
+              "blockId": "BLK-e46058fe",
+              "name": "Service 3.2-1",
+              "type": "SoftwareService",
+              "layer": "Presentation",
+              "interfaceRefs": [
+                "IFC-db91c867"
+              ]
+            },
+            {
+              "blockId": "BLK-f84854bd",
+              "name": "Actuator 3.2-2",
+              "type": "Interface",
+              "layer": "Mission",
+              "interfaceRefs": [
+                "IFC-837f88a8",
+                "IFC-2659fc0c"
+              ]
+            }
+          ],
+          "metadata": {
+            "owner": "Systems",
+            "version": "v3.2",
+            "lastUpdated": "2025-09-13"
+          },
+          "children": [
+            {
+              "id": "NODE-b3757366",
+              "name": "CircleLayout",
+              "requirements": [
+                {
+                  "reqId": "REQ-16b60590",
+                  "title": "Requirement 3.2.1.1",
+                  "text": "The system shall provide capability level 3.2.1 feature 1.",
+                  "priority": "Medium",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Demonstration",
+                    "status": "Complete"
+                  },
+                  "source": "MIL-STD-961E",
+                  "acceptanceCriteria": "Acceptance criteria for 3.2.1.1"
+                },
+                {
+                  "reqId": "REQ-78b1b9ca",
+                  "title": "Requirement 3.2.1.2",
+                  "text": "The system shall provide capability level 3.2.1 feature 2.",
+                  "priority": "Medium",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Inspection",
+                    "status": "Complete"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 3.2.1.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-adeebfe2",
+                  "name": "Actuator 3.2.1-1",
+                  "type": "SoftwareService",
+                  "layer": "Platform",
+                  "interfaceRefs": [
+                    "IFC-9630da74"
+                  ]
+                },
+                {
+                  "blockId": "BLK-9e60d560",
+                  "name": "Bus 3.2.1-2",
+                  "type": "Interface",
+                  "layer": "Presentation",
+                  "interfaceRefs": [
+                    "IFC-a63be308"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "SW",
+                "version": "v1.6",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 9317
+            },
+            {
+              "id": "NODE-225304e1",
+              "name": "RadialTreeLayout",
+              "requirements": [
+                {
+                  "reqId": "REQ-7ac0f36f",
+                  "title": "Requirement 3.2.2.1",
+                  "text": "The system shall provide capability level 3.2.2 feature 1.",
+                  "priority": "High",
+                  "status": "Verified",
+                  "verification": {
+                    "method": "Demonstration",
+                    "status": "Complete"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 3.2.2.1"
+                },
+                {
+                  "reqId": "REQ-af85032f",
+                  "title": "Requirement 3.2.2.2",
+                  "text": "The system shall provide capability level 3.2.2 feature 2.",
+                  "priority": "High",
+                  "status": "Approved",
+                  "verification": {
+                    "method": "Test",
+                    "status": "Complete"
+                  },
+                  "source": "CONOPS",
+                  "acceptanceCriteria": "Acceptance criteria for 3.2.2.2"
+                }
+              ],
+              "relatedSystemBlocks": [
+                {
+                  "blockId": "BLK-4e7941a0",
+                  "name": "Processor 3.2.2-1",
+                  "type": "Component",
+                  "layer": "Data",
+                  "interfaceRefs": [
+                    "IFC-04bdb33d",
+                    "IFC-efd8fa7c"
+                  ]
+                },
+                {
+                  "blockId": "BLK-22e7dcf6",
+                  "name": "Actuator 3.2.2-2",
+                  "type": "Subsystem",
+                  "layer": "Mission",
+                  "interfaceRefs": [
+                    "IFC-aafec2d1",
+                    "IFC-a5dea301"
+                  ]
+                }
+              ],
+              "metadata": {
+                "owner": "Systems",
+                "version": "v3.8",
+                "lastUpdated": "2025-09-13"
+              },
+              "value": 12348
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
